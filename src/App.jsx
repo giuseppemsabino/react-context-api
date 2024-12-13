@@ -4,8 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
 
 //contexts
-import CounterContext from "./contexts/PostsContext";
-
+import { PostsContextProvider } from "./contexts/PostsContext";
 
 //pages
 import HomePage from "./pages/HomePage";
@@ -14,24 +13,24 @@ import PostsPage from "./pages/PostsPage";
 import IndexPosts from "./pages/posts/indexPosts";
 import ShowPosts from "./pages/posts/ShowPosts";
 
-
 function App() {
   return (
-    
-    <BrowserRouter>
-      <Routes>
-        <Route Component={DefaultLayout}>
-          <Route index Component={HomePage} />
-          <Route path="/about" Component={AboutPage} />
-          <Route path="/post" Component={PostsPage} />
+    <PostsContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route Component={DefaultLayout}>
+            <Route index Component={HomePage} />
+            <Route path="/about" Component={AboutPage} />
+            <Route path="/post" Component={PostsPage} />
 
-          <Route path="/posts">
-          <Route index Component={IndexPosts}/>
-          <Route path=":id" Component={ShowPosts}/>
+            <Route path="/posts">
+              <Route index Component={IndexPosts} />
+              <Route path=":id" Component={ShowPosts} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </PostsContextProvider>
   );
 }
 

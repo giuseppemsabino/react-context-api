@@ -9,7 +9,7 @@ const PostsContext = createContext();
 export const PostsContextProvider = ({children}) => {
 
     const postsData = {
-        postlist: [
+        posts: [
         {
             "id": 1,
             "title": "ciambellone",
