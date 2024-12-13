@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 //layout
 import DefaultLayout from "./layouts/DefaultLayout";
 
+//contexts
+import CounterContext from "./contexts/PostsContext";
+
 
 //pages
 import HomePage from "./pages/HomePage";
@@ -14,6 +17,7 @@ import ShowPosts from "./pages/posts/ShowPosts";
 
 function App() {
   return (
+    
     <BrowserRouter>
       <Routes>
         <Route Component={DefaultLayout}>
