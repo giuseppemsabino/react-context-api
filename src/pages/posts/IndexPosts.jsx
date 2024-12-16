@@ -4,31 +4,13 @@ import { usePostsContext } from "../../contexts/PostsContext";
 
 
 export default function IndexPosts() {
-  // const [posts, setPosts] = useState([]);
-  const {posts} = usePostsContext();
   const apiUrl = import.meta.env.VITE_API_URL;
+  const {posts} = usePostsContext();
   //   console.log(apiUrl);
 
 
-  // useEffect(() => {
-  //   fetchPosts();
-  // }, []);
-
-  const fetchPosts = () => {
-    fetch(apiUrl + "/")
-      .then((res) => res.json())
-      .then((data) => {
-        const postsData = data.map((post) => ({
-          id: post.id,
-          image: post.image,
-          title: post.title,
-          category: post.category,
-          published: post.published,
-        }));
-        setPosts(postsData);
-        // console.log(postsData);
-      });
-  };
+  
+  
 
   return (
     <>

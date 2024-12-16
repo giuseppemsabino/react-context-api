@@ -1,60 +1,40 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
-
-// creo il context 
+// creo il context
 const PostsContext = createContext();
 
-
 // esporto il provider
-export const PostsContextProvider = ({children}) => {
+export const PostsContextProvider = ({ children }) => {
+  const apiUrl = import.meta.env.VITE_API_URL;
 
-    const postsData = {
-        posts: [
-        {
-            "id": 1,
-            "title": "ciambellone",
-            "content": "questa e la foto di un ciambellone",
-            "image": "/ciambellone.jpeg",
-            "category": "Food",
-            "published": true
-        },
-        {
-            "id": 2,
-            "title": "craker",
-            "content": "questa e una foto di crakers di barbabietola",
-            "image": "/cracker_barbabietola.jpeg",
-            "category": "Food",
-            "published": false
-        },
-        {
-            "id": 3,
-            "title": "pane fritto",
-            "content": "questa e la imagine di un pane fritto",
-            "image": "/pane_fritto_dolce.jpeg",
-            "category": "Dessert",
-            "published": true
-        },
-        {
-            "id": 4,
-            "title": "pasta barbabietola",
-            "content": "questa e l'imagine di pasta di barbabietola",
-            "image": "/pasta_barbabietola.jpeg",
-            "category": "Pasta",
-            "published": false
-        },
-        {
-            "id": 5,
-            "title": "torta paesana",
-            "content": "questa e l'imagine di una torta paesana",
-            "image": "/torta_paesana.jpeg",
-            "category": "Dessert",
-            "published": true
-        }
-    ]};
-    
+  const [postsData, setPostsData] = useState({
+    posts: [],
+  });
 
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
-    return <PostsContext.Provider value={postsData}>{children}</PostsContext.Provider>
+  const fetchPosts = () => {
+    fetch(apiUrl + "/")
+      .then((res) => res.json())
+      .then((data) => {
+        const posts = data.map((post) => ({
+          id: post.id,
+          image: post.image,
+          title: post.title,
+          category: post.category,
+          published: post.published,
+        }));
+
+        const newPostsData = { ...postsData, posts };
+        setPostsData(newPostsData);
+      });
+  };
+
+  return (
+    <PostsContext.Provider value={postsData}>{children}</PostsContext.Provider>
+  );
 };
 
 //esporto lo use per il consumers
