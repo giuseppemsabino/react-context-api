@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { usePostsContext } from "../../contexts/PostsContext";
-
+import { usePostsContext } from "../contexts/PostsContext";
 
 export default function IndexPosts() {
   const apiUrl = import.meta.env.VITE_API_URL;
-  const {posts} = usePostsContext();
+  const { posts } = usePostsContext();
   //   console.log(apiUrl);
-
-
-  
-  
 
   return (
     <>
@@ -36,7 +31,9 @@ export default function IndexPosts() {
                   </th>
                   <td>{post.title}</td>
                   <td>
-                    <span className="badge text-bg-secondary">{post.category}</span>
+                    <span className="badge text-bg-secondary">
+                      {post.category}
+                    </span>
                   </td>
                   <td>{post.published ? "Si" : "No"}</td>
                   <td>
@@ -56,8 +53,6 @@ export default function IndexPosts() {
           <h3 className="mt-4">No Posts</h3>
         )}
       </div>
-
-
     </>
   );
 }

@@ -10,8 +10,8 @@ import { PostsContextProvider } from "./contexts/PostsContext";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import PostsPage from "./pages/PostsPage";
-import IndexPosts from "./pages/posts/indexPosts";
-import ShowPosts from "./pages/posts/ShowPosts";
+import IndexPosts from "./posts/IndexPosts";
+import ShowPosts from "./posts/ShowPosts";
 
 function App() {
   return (
